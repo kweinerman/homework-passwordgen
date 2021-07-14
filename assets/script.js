@@ -27,7 +27,34 @@ function getRandomSpecial() {
 //   number: getRandomNumber
 // }
 //for loop to generate password if all = true
+
 function getPassword(useUpperCase, useLowerCase, useSpecial, useNumbers, passwordLength){
+var randomArray = []
+
+  var randomFunc = {
+  
+}
+if (useUpperCase === true) {
+  randomFunc.trueUpper = getRandomUpper
+  randomArray.push("trueUpper")
+}
+if (useLowerCase === true) {
+  randomFunc.trueLower = getRandomLower
+  randomArray.push("trueLower")  
+}
+if (useSpecial === true) {
+  randomFunc.trueSpecial = getRandomSpecial
+  randomArray.push("trueSpecial")
+}
+if (useNumbers === true) {
+randomFunc.trueNumbers = getRandomNumber  
+randomArray.push("trueNumbers")
+}
+console.log(randomArray);
+
+
+
+
 var password = ""
   const typesCount = useUpperCase + useLowerCase + useSpecial + useNumbers;
   const typesArr = [{useUpperCase}, {useLowerCase}, {useSpecial}, {useNumbers}].filter(item => Object.values(item)[0]);
@@ -35,24 +62,12 @@ var password = ""
   return ""
   for (let i = 0; i < passwordLength; i++) {
 
-    if (Math.random() < 0.2){
-    password += getRandomUpper(); 
-  } 
-    else if (Math.random() <= 0.4){
-      password += getRandomLower(); 
-  
-    }
-    else if (Math.random() >= 0.8){
-      password += getRandomSpecial(); 
-  
-    }
-    else if (Math.random() <= 0.6){
-      password += getRandomNumber(); 
-  
-    }
+var randomNumber = Math.floor(Math.random()*randomArray.length)
+randomFunc[randomArray[randomNumber]] 
+password += randomFunc[randomArray[randomNumber]]();
   
 }
-return password
+return password 
 }
 
 
@@ -78,7 +93,6 @@ function generatePassword() {
     var useNumbers = window.confirm("Do you want to use numbers?")
   }
   
-
 
 
   //store the response in a variable /array
